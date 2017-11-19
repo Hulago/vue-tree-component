@@ -1,0 +1,12 @@
+<li>
+  <!--<span><input type="checkbox" :click="n.check()" /></span>-->
+  <i class="material-icons" @click="node.open()" v-if="node.collapse && node.children.length >0">add</i>
+  <i class="material-icons" @click="node.close()" v-if="!node.collapse && node.children.length >0">remove</i>
+  <div style="display: inline-block; min-width: 80%;" :class="{selected: node.selected}" @click="selectNode(node)">{{ node.label }}</div>
+  <ul v-if="!node.collapse && node.children.length >0">
+    <template v-for="child of node.children">
+      <!--<h1>{{child.id}}</h1>-->
+      <v-tree-node :node="child" :node-click="nodeClick" ></v-tree-node>
+    </template>
+  </ul>
+</li>
